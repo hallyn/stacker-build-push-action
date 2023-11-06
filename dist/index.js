@@ -23818,15 +23818,7 @@ function resolveReleaseData() {
 }
 function downloadStacker(releaseData) {
     return installer_awaiter(this, void 0, void 0, function* () {
-        core.info(`Downloading ${stackerBin} from ${releaseData.html_url}`);
-        let token = core.getInput('token');
-        let asset = releaseData.assets.find(obj => {
-            return obj.name == stackerBin;
-        });
-        const toolDownload = yield tool_cache.downloadTool(asset.url, undefined, `token ${token}`, {
-            accept: 'application/octet-stream'
-        });
-        return toolDownload;
+        return true;
     });
 }
 function makeAvailableInPath(download, version) {

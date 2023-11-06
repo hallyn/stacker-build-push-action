@@ -34,21 +34,7 @@ export async function resolveReleaseData() {
 
 export async function downloadStacker(releaseData) {
     core.info(`Downloading ${stackerBin} from ${releaseData.html_url}`)
-    let token = core.getInput('token');
-
-    let asset = releaseData.assets.find(obj => {
-        return obj.name == stackerBin
-    })
-
-    const toolDownload = await tc.downloadTool(
-        asset.url,
-        undefined,
-        `token ${token}`,
-        {
-            accept: 'application/octet-stream'
-        }
-    );
-    return toolDownload;
+    return true;
 }
 
 export async function makeAvailableInPath(download, version) {
