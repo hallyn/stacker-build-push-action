@@ -20,16 +20,6 @@ export async function run(): Promise<void> {
 
     core.info(`Installing stacker version: ${version}`);
 
-    // check cache (works just for the same run, not between)
-    let path = tc.find(stackerBin, version);
-    if (!path) {
-        let download = await installer.downloadStacker(releaseData);
-        await installer.makeAvailableInPath(download, version);
-        core.info(`${stackerBin} version ${version} installed successfully`);
-    } else {
-        core.info(`${stackerBin} version ${version} already installed`)
-    }
-
     // get stacker cli
     const stackerPath = await io.which("stacker", true);
     const cli: StackerCLI = new StackerCLI(stackerPath);

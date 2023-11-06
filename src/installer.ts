@@ -32,11 +32,6 @@ export async function resolveReleaseData() {
     return releaseData.data
 }
 
-export async function downloadStacker(releaseData) {
-    core.info(`Downloading ${stackerBin} from ${releaseData.html_url}`)
-    return true;
-}
-
 export async function makeAvailableInPath(download, version) {
     core.info(`Cache file ${download} and rename to generic name`);
     const cachedPath = await tc.cacheFile(download, stackerBin, stackerBin, version);

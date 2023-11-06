@@ -23816,11 +23816,6 @@ function resolveReleaseData() {
         return releaseData.data;
     });
 }
-function downloadStacker(releaseData) {
-    return installer_awaiter(this, void 0, void 0, function* () {
-        return true;
-    });
-}
 function makeAvailableInPath(download, version) {
     return installer_awaiter(this, void 0, void 0, function* () {
         core.info(`Cache file ${download} and rename to generic name`);
@@ -23885,15 +23880,6 @@ function run() {
         let releaseData = yield resolveReleaseData();
         let version = releaseData.tag_name;
         core.info(`Installing stacker version: ${version}`);
-        let path = tool_cache.find(stackerBin, version);
-        if (!path) {
-            let download = yield downloadStacker(releaseData);
-            yield makeAvailableInPath(download, version);
-            core.info(`${stackerBin} version ${version} installed successfully`);
-        }
-        else {
-            core.info(`${stackerBin} version ${version} already installed`);
-        }
         const stackerPath = yield io.which("stacker", true);
         const cli = new StackerCLI(stackerPath);
         yield cli.execute(["--version"], { group: true });
